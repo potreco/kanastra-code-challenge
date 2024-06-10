@@ -1,14 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-
-import * as Components from './components'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import AppRoutes from './routes/AppRouter';
+import { FileProvider } from './contexts/FileContext';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Components.NoMatch />
-      {/* Your Job here */}
-    </BrowserRouter>
+    <FileProvider>
+      <AppRoutes />
+    </FileProvider>
   </React.StrictMode>,
-)
+);

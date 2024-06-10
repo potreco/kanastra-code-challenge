@@ -1,38 +1,28 @@
-import { ReactNode } from "react";
-
-enum FileActionType {}
+export enum FileActionType {
+  UPLOAD_FILE = 'UPLOAD_FILE',
+  SET_LOADING = 'SET_LOADING',
+  SET_FILE_LIST = 'SET_FILE_LIST',
+  REFRESH_FILE_LIST = 'REFRESH_FILE_LIST',
+}
 
 type ReducerAction<T, P> = {
   type: T;
   payload?: Partial<P>;
 };
 
-
-type FileContextState = {
+export type FileContextState = {
   isLoading: boolean;
   file: File | null;
-  fileList: File[]; // & {} You can add more information about the challenge inside this type
+  fileList: File[];
 };
 
-type FileAction = ReducerAction<
-  FileActionType,
-  Partial<FileContextState>
->;
+export type FileAction = ReducerAction<FileActionType, FileContextState>;
 
-type FileDispatch = ({ type, payload }: FileAction) => void;
+type FileDispatch = (action: FileAction) => void;
 
-type FileContextType = {
+export type FileContextType = {
   state: FileContextState;
   dispatch: FileDispatch;
 };
 
-type FileProviderProps = { children: ReactNode };
-
-export type {
-  FileActionType,
-  FileContextState,
-  FileAction,
-  FileDispatch,
-  FileContextType,
-  FileProviderProps,
-}
+export type FileProviderProps = { children: React.ReactNode };
