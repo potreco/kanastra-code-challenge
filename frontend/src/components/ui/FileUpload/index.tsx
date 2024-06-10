@@ -7,6 +7,7 @@ import { useState } from 'react';
 const FileUpload: React.FC = () => {
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
   const {
     dispatch,
     state: { isLoading },
@@ -38,6 +39,7 @@ const FileUpload: React.FC = () => {
         payload: { isLoading: false },
       });
       setSelectedFile(null);
+      setSuccess(true);
     } catch (error) {
       setSelectedFile(null);
       setError('Failed to upload the file. Please try again later.');
@@ -58,6 +60,7 @@ const FileUpload: React.FC = () => {
       />
 
       {error && <p className="text-red-500">{error}</p>}
+      {success && <p className="text-green-500">Upload is completed!</p>}
 
       {selectedFile && (
         <div className="mt-4">
